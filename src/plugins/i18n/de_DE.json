@@ -5,7 +5,10 @@
   "buttonSelectAll": "Alle auswählen",
   "buttonSelectNone": "Keine auswählen",
   "buttonUpdate": "Aktualisieren",
+  "formLabelTrialComponents": "Versuchskomponenten",
+  "formDescriptionTrialComponents": "Wähle die Komponenten die Teil des Versuches sein sollen.",
   "menuLocale": "Sprache",
+  "modalTextLoading": "Lade...",
   "modalTextTrialDetails": "Unten stehen mehr Informationen über den Versuch selber und die Komponenten die Teil des Versuches sind bereit.",
   "tableColumnTrialId": "Id",
   "tableColumnTrialName": "Versuchsname",
@@ -20,6 +23,8 @@
   "tableColumnTrialLatitude": "Breitengrad",
   "tableColumnTrialLongitude": "Längengrad",
   "tableColumnTrialCreatedOn": "Erstellt am",
+  "tableColumnTrialCpr": "CPR",
+  "tableColumnTrialCprTooltip": "Nutzpflanzenleistungsverhältnis",
   "trialDetailsTitleFarmManagement": "Farmmanagement",
   "trialDetailsSubtitleFarmManagement": "",
   "trialDetailsTitleWeedIncidence": "Unkrautvorkommen",
@@ -31,5 +36,9 @@
   "trialDetailsTitleSoilHealth": "Bodengesundheit",
   "trialDetailsSubtitleSoilHealth": "",
   "trialDetailsTitleBiodiversity": "Artenvielfalt",
-  "trialDetailsSubtitleBiodiversity": ""
+  "trialDetailsSubtitleBiodiversity": "",
+  "trialDetailsTitleCpr": "Nutzpflanzenleistungsverhältnis",
+  "trialDetailsSubtitleCpr": "",
+  "widgetGradientLow": "Niedrig",
+  "widgetGradientHigh": "Hoch"
 }

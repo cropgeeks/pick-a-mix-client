@@ -1,7 +1,7 @@
 <template>
   <div id="table">
     <b-form @submit.prevent="update(true)">
-      <b-form-group class="my-3" :label="$t('formLabelTrialComponents')" label-for="trial-components">
+      <b-form-group class="my-3" :label="$t('formLabelTrialComponents')" :description="$t('formDescriptionTrialComponents')" label-for="trial-components">
         <b-form-checkbox-group v-model="selectedComponents" id="trial-components">
           <b-form-checkbox :value="comp" v-for="comp in allComponents" :key="`components-${comp}`">
             <span class="table-icon" v-if="comp === 'Barley'"><BarleyIcon class="icon-barley" /> {{ comp }}</span>
@@ -62,9 +62,22 @@
         </span>
       </template>
 
+      <template #head(trialCpr)="data">
+        <span>{{ data.label }}</span> <BIconInfoCircle v-b-tooltip="$t('tableColumnTrialCprTooltip')" />
+      </template>
+
+      <template #cell(trialCpr)="data">
+        <span class="d-flex flex-row align-items-center text-nowrap">
+          <span :style="{ color: storeColors[0 % storeColors.length] }" :class="`table-icon mr-2 ${data.value ? '' : 'disabled'}`">
+            <CPRIcon />
+          </span>
+          <span>{{ data.value }}</span>
+        </span>
+      </template>
+
       <template #cell(trialFarmManagement)="data">
         <span class="d-flex flex-row align-items-center text-nowrap">
-          <span :style="{ color: storeColors[0 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialFarmManagement ? '' : 'disabled'}`">
+          <span :style="{ color: storeColors[1 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialFarmManagement ? '' : 'disabled'}`">
             <FarmManagementIcon />
           </span>
           <span class="text-preview" v-b-tooltip="data.item.trialFarmManagement">{{ data.item.trialFarmManagement }}</span>
@@ -73,7 +86,7 @@
 
       <template #cell(trialWeedIncidence)="data">
         <span class="d-flex flex-row align-items-center text-nowrap">
-          <span :style="{ color: storeColors[1 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialWeedIncidence ? '' : 'disabled'}`">
+          <span :style="{ color: storeColors[2 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialWeedIncidence ? '' : 'disabled'}`">
             <WeedIncidenceIcon />
           </span>
           <span class="text-preview" v-b-tooltip="data.item.trialWeedIncidence">{{ data.item.trialWeedIncidence }}</span>
@@ -82,7 +95,7 @@
 
       <template #cell(trialDiseaseIncidence)="data">
         <span class="d-flex flex-row align-items-center text-nowrap">
-          <span :style="{ color: storeColors[2 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialDiseaseIncidence ? '' : 'disabled'}`">
+          <span :style="{ color: storeColors[3 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialDiseaseIncidence ? '' : 'disabled'}`">
             <DiseaseIncidenceIcon />
           </span>
           <span class="text-preview" v-b-tooltip="data.item.trialDiseaseIncidence">{{ data.item.trialDiseaseIncidence }}</span>
@@ -91,7 +104,7 @@
 
       <template #cell(trialPestIncidence)="data">
         <span class="d-flex flex-row align-items-center text-nowrap">
-          <span :style="{ color: storeColors[3 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialPestIncidence ? '' : 'disabled'}`">
+          <span :style="{ color: storeColors[4 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialPestIncidence ? '' : 'disabled'}`">
             <PestIncidenceIcon />
           </span>
           <span class="text-preview" v-b-tooltip="data.item.trialPestIncidence">{{ data.item.trialPestIncidence }}</span>
@@ -100,7 +113,7 @@
 
       <template #cell(trialSoilHealth)="data">
         <span class="d-flex flex-row align-items-center text-nowrap">
-          <span :style="{ color: storeColors[4 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialSoilHealth ? '' : 'disabled'}`">
+          <span :style="{ color: storeColors[5 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialSoilHealth ? '' : 'disabled'}`">
             <SoilHealthIcon />
           </span>
           <span class="text-preview" v-b-tooltip="data.item.trialSoilHealth">{{ data.item.trialSoilHealth }}</span>
@@ -109,7 +122,7 @@
 
       <template #cell(trialBiodiversity)="data">
         <span class="d-flex flex-row align-items-center text-nowrap">
-          <span :style="{ color: storeColors[5 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialBiodiversity ? '' : 'disabled'}`">
+          <span :style="{ color: storeColors[6 % storeColors.length] }" :class="`table-icon mr-2 ${data.item.trialBiodiversity ? '' : 'disabled'}`">
             <BiodiversityIcon />
           </span>
           <span class="text-preview" v-b-tooltip="data.item.trialBiodiversity">{{ data.item.trialBiodiversity }}</span>
@@ -126,6 +139,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import CPRIcon from '@/components/icons/CPRIcon'
 import BiodiversityIcon from '@/components/icons/BiodiversityIcon'
 import FarmManagementIcon from '@/components/icons/FarmManagementIcon'
 import WeedIncidenceIcon from '@/components/icons/WeedIncidenceIcon'
@@ -149,7 +163,7 @@ import WheatIcon from '@/components/icons/WheatIcon'
 
 import { getComponents } from '@/plugins/api'
 
-import { BIconPatchQuestion, BIconArrowRepeat, BIconCheck2Square, BIconCheck } from 'bootstrap-vue'
+import { BIconPatchQuestion, BIconArrowRepeat, BIconCheck2Square, BIconCheck, BIconInfoCircle } from 'bootstrap-vue'
 
 const emitter = require('tiny-emitter/instance')
 
@@ -159,7 +173,9 @@ export default {
     BIconPatchQuestion,
     BIconCheck2Square,
     BIconCheck,
+    BIconInfoCircle,
     BiodiversityIcon,
+    CPRIcon,
     DiseaseIncidenceIcon,
     FarmManagementIcon,
     PestIncidenceIcon,
@@ -234,6 +250,11 @@ export default {
         sortable: false,
         label: this.$t('tableColumnTrialComponents')
       }, {
+        key: 'trialCpr',
+        sortable: true,
+        label: this.$t('tableColumnTrialCpr'),
+        formatter: (value) => value ? value.toFixed(2) : null
+      }, {
         key: 'trialFarmManagement',
         sortable: true,
         label: this.$t('tableColumnTrialFarmManagement')
@@ -280,15 +301,26 @@ export default {
   methods: {
     rowSelected: function (selectedItem) {
       if (selectedItem) {
-        this.$emit('trial-selected', selectedItem)
+        emitter.emit('trial-selected', selectedItem)
       } else {
-        this.$emit('trial-selected', null)
+        emitter.emit('trial-selected', null)
       }
     },
     update: function (resetPrevCount = false) {
+      const filter = this.selectedComponents.length === this.allComponents.length
+        ? null
+        : [{
+            column: 'trialComponents',
+            operator: 'and',
+            comparator: 'jsonSearch',
+            values: this.selectedComponents
+          }]
+
       if (resetPrevCount) {
         this.page = 1
         this.totalRows = -1
+
+        emitter.emit('filtering-changed', filter)
       }
 
       emitter.emit('show-loading', true)
@@ -298,14 +330,7 @@ export default {
         prevCount: this.totalRows,
         orderBy: this.sortBy,
         ascending: this.sortDesc ? 0 : 1,
-        filter: this.selectedComponents.length === this.allComponents.length
-          ? null
-          : [{
-              column: 'trialComponents',
-              operator: 'and',
-              comparator: 'jsonSearch',
-              values: this.selectedComponents
-            }]
+        filter: filter
       }, result => {
         if (result) {
           this.items = result.data
@@ -357,47 +382,5 @@ export default {
 }
 </style>
 
-<style scoped>
-.icon-barley {
-  color: #f6b93b;
-}
-.icon-bean  {
-  color: #00b894;
-}
-.icon-clover  {
-  color: #009432;
-}
-.icon-fababean {
-  color: #10ac84;
-}
-.icon-maize {
-  color: red;
-}
-.icon-linseed {
-  color: #BDC581;
-}
-.icon-oats {
-  color: #EAB543;
-}
-.icon-peas {
-  color: #1dd1a1;
-}
-.icon-potato {
-  color: #f5cd79;
-}
-.icon-rapeseed {
-  color: #fbc531;
-}
-.icon-rye {
-  color: #e55039;
-}
-.icon-turnip {
-  color: #FC427B;
-}
-.icon-wheat {
-  color: #ff9f43;
-}
-.icon-vetch {
-  color: #6ab04c;
-}
+<style>
 </style>

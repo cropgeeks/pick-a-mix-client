@@ -15,10 +15,12 @@
     </div>
 
     <b-card>
-      <div class="text-info" v-html="$t('pageHomeSubmissionForm')" />
+      <h5 class="text-info mb-0" v-html="$t('pageHomeSubmissionForm')" />
     </b-card>
 
-    <TrialTable :getData="getTrialData" @trial-selected="trialSelected" />
+    <TrialTable :getData="getTrialData" />
+
+    <TrialMap />
 
     <Tour :steps="tourSteps" :resetOnRouterNav="true" :hideBackButton="false" ref="tour" />
 
@@ -31,15 +33,19 @@ import TrialDetailsModal from '@/components/modals/TrialDetailsModal'
 import { BIconCollectionPlay } from 'bootstrap-vue'
 import Tour from '@/components/Tour'
 import TrialTable from '@/components/TrialTable'
+import TrialMap from '@/components/TrialMap'
 
 import { postTrialTable } from '@/plugins/api'
+
+const emitter = require('tiny-emitter/instance')
 
 export default {
   components: {
     BIconCollectionPlay,
     TrialDetailsModal,
     Tour,
-    TrialTable
+    TrialTable,
+    TrialMap
   },
   data: function () {
     return {
@@ -87,6 +93,10 @@ export default {
     }
   },
   mounted: function () {
+    emitter.on('trial-selected', this.trialSelected)
+  },
+  beforeDestroy: function () {
+    emitter.off('trial-selected', this.trialSelected)
   }
 }
 </script>

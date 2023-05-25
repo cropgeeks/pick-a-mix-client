@@ -136,4 +136,47 @@ $secondary: #bdc3c7;
     .rounded#{$infix}-0 { border-radius: 0; }
   }
 }
+
+.icon-barley {
+  color: #f6b93b;
+}
+.icon-bean  {
+  color: #00b894;
+}
+.icon-clover  {
+  color: #009432;
+}
+.icon-fababean {
+  color: #10ac84;
+}
+.icon-maize {
+  color: red;
+}
+.icon-linseed {
+  color: #BDC581;
+}
+.icon-oats {
+  color: #EAB543;
+}
+.icon-peas {
+  color: #1dd1a1;
+}
+.icon-potato {
+  color: #f5cd79;
+}
+.icon-rapeseed {
+  color: #fbc531;
+}
+.icon-rye {
+  color: #e55039;
+}
+.icon-turnip {
+  color: #FC427B;
+}
+.icon-wheat {
+  color: #ff9f43;
+}
+.icon-vetch {
+  color: #6ab04c;
+}
 </style>

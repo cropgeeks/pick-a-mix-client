@@ -7,15 +7,13 @@ const getMeasuresCached = () => {
   if (!measures) {
     return new Promise((resolve, reject) => {
       getMeasures(result => {
-        const mapped = {}
         const colors = store.getters.storeColors
 
         result.forEach((r, i) => {
           r.color = colors[i % colors.length]
-          mapped[r.id] = r
         })
-        measures = mapped
-        resolve(mapped)
+        measures = result
+        resolve(result)
       }).catch(e => reject(e))
     })
   } else {
