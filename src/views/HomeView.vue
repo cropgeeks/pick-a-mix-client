@@ -22,6 +22,16 @@
 
     <TrialMap />
 
+    <b-form @submit.prevent="updateCharts" v-if="measureOptions && measureOptions.length > 0">
+      <b-form-group :label="$t('formLabelMeasures')" label-for="measures">
+        <b-form-select multiple :options="measureOptions" v-model="selectedMeasures" />
+      </b-form-group>
+
+      <b-button type="submit">{{ $t('buttonPlot') }}</b-button>
+    </b-form>
+
+    <MeasureChart :measure="measure" v-for="measure in selectedMeasures" :key="`measure-chart-${measure.id}`" />
+
     <Tour :steps="tourSteps" :resetOnRouterNav="true" :hideBackButton="false" ref="tour" />
 
     <TrialDetailsModal ref="trialDetailsModal" :trial="selectedTrial" v-if="selectedTrial" />
@@ -30,18 +40,20 @@
 
 <script>
 import TrialDetailsModal from '@/components/modals/TrialDetailsModal'
+import MeasureChart from '@/components/MeasureChart'
 import { BIconCollectionPlay } from 'bootstrap-vue'
 import Tour from '@/components/Tour'
 import TrialTable from '@/components/TrialTable'
 import TrialMap from '@/components/TrialMap'
 
-import { postTrialTable } from '@/plugins/api'
+import { postTrialTable, getMeasures } from '@/plugins/api'
 
 const emitter = require('tiny-emitter/instance')
 
 export default {
   components: {
     BIconCollectionPlay,
+    MeasureChart,
     TrialDetailsModal,
     Tour,
     TrialTable,
@@ -49,10 +61,24 @@ export default {
   },
   data: function () {
     return {
-      selectedTrial: null
+      selectedTrial: null,
+      selectedMeasures: [],
+      measures: []
     }
   },
   computed: {
+    measureOptions: function () {
+      if (this.measures) {
+        return this.measures.map(m => {
+          return {
+            text: m.name,
+            value: m
+          }
+        })
+      } else {
+        return []
+      }
+    },
     tourSteps: function () {
       return [{
         title: () => this.$t('tourHomeWelcomeTitle'),
@@ -94,6 +120,10 @@ export default {
   },
   mounted: function () {
     emitter.on('trial-selected', this.trialSelected)
+
+    getMeasures(result => {
+      this.measures = result
+    })
   },
   beforeDestroy: function () {
     emitter.off('trial-selected', this.trialSelected)

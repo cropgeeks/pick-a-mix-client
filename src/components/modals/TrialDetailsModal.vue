@@ -156,6 +156,35 @@
 
       <div ref="map" class="trial-map mb-3" v-if="hasLocation" />
 
+      <section>
+        <h3>Whole mixture</h3>
+        <b-row>
+          <template v-for="measure in measures">
+            <b-col cols=12 md=6 class="mb-3" :key="`trial-measure-${measure.id}`" v-if="trialMeasuresById[measure.id]">
+              <!-- Whole mixture -->
+              <b-card class="h-100 trial-meausure" no-body>
+                <b-row no-gutters class="h-100">
+                  <b-col cols=12 lg=3 :style="{ color: 'white', backgroundColor: (trialMeasuresById[measure.id]) ? measure.color : 'var(--secondary)' }" class="d-flex align-items-center justify-content-center rounded py-3 py-lg-0">
+                    <svg v-html="measure.icon" v-if="measure && measure.icon" />
+                    <BIconPatchQuestion v-else />
+                  </b-col>
+                  <b-col cols=12 lg=9>
+                    <b-card-body>
+                      <b-card-title>{{ measure.name }} - <b-badge variant="warning">Whole mixture</b-badge></b-card-title>
+                      <b-card-sub-title v-if="trialMeasuresById[measure.id]">
+                        <span v-if="measure.datatype === 'date'">{{ new Date(trialMeasuresById[measure.id]).toLocaleDateString() }}</span>
+                        <span v-else>{{ trialMeasuresById[measure.id] }}</span>
+                      </b-card-sub-title>
+                      <b-card-sub-title v-else>N/A</b-card-sub-title>
+                    </b-card-body>
+                  </b-col>
+                </b-row>
+              </b-card>
+            </b-col>
+          </template>
+        </b-row>
+      </section>
+
       <section v-for="comp in trial.trialComponents" :key="`component-details-${comp.id}`">
         <h3>{{ comp.crop }} - <small>{{ comp.variety }}</small></h3>
 
@@ -287,6 +316,25 @@ export default {
     ]),
     hasLocation: function () {
       return this.trial && this.trial.trialLatitude !== undefined && this.trial.trialLatitude !== null && this.trial.trialLongitude !== undefined && this.trial.trialLongitude !== null
+    },
+    trialMeasuresById: function () {
+      if (this.trial && this.trial.trialMeasures && this.trial.trialMeasures.length > 0 && this.measures && this.measures.length > 0) {
+        const result = {}
+
+        this.measures.forEach(m => {
+          const v = this.trial.trialMeasures.find(tm => tm.id === m.id)
+
+          if (v) {
+            result[m.id] = v.value
+          } else {
+            result[m.id] = null
+          }
+        })
+
+        return result
+      } else {
+        return {}
+      }
     },
     componentMeasuresById: function () {
       if (this.trial && this.trial.trialComponents && this.trial.trialComponents.length > 0 && this.componentMeasures && this.componentMeasures.length > 0 && this.measures && this.measures.length > 0) {

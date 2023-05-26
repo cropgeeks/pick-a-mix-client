@@ -4,6 +4,8 @@ const postTrialTable = (params, onSuccess, onError) => apiAxios({ url: 'trial', 
 
 const getMeasures = (onSuccess, onError) => apiAxios({ url: 'measure', success: onSuccess, error: onError })
 
+const getMeasureValues = (measureId, onSuccess, onError) => apiAxios({ url: `measure/${measureId}`, success: onSuccess, error: onError })
+
 const getComponents = (onSuccess, onError) => apiAxios({ url: 'component', success: onSuccess, error: onError })
 
 const getTrialMeasures = (trialId, onSuccess, onError) => apiAxios({ url: `trial/${trialId}/measure`, success: onSuccess, error: onError })
@@ -11,6 +13,7 @@ const getTrialMeasures = (trialId, onSuccess, onError) => apiAxios({ url: `trial
 export {
   getComponents,
   getMeasures,
+  getMeasureValues,
   postTrialTable,
   getTrialMeasures
 }
