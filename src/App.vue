@@ -24,9 +24,9 @@
       </b-collapse>
     </b-navbar>
     <!-- The main content -->
-    <b-container fluid class="my-3 flex-grow-1">
+    <div class="flex-grow-1">
       <router-view :key="$route.path" />
-    </b-container>
+    </div>
 
     <b-modal v-model="loadingVisible" hide-header hide-footer no-close-on-backdrop no-close-on-esc hide-header-close>
       <div class="text-center">

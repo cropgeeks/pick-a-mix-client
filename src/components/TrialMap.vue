@@ -26,6 +26,7 @@
                       :radius="location.radius"
                       :weight="0.25"
                       :opacity="1"
+                      :zIndexOffset="location.zIndex"
                       color="#f5f6fa"
                       :fillOpacity="0.5"
                       :fillColor="location.color || '#EA2027'"
@@ -174,7 +175,8 @@ export default {
             radius: 15,
             trial: t,
             color: this.colorBy === 'trialCpr' ? this.gradient.usedColors[value || 'N/A'] : this.colorCategories[value || 'N/A'],
-            value: value
+            value: value,
+            zIndex: this.colorBy === 'trialCpr' ? null : ([...Object.keys(this.colorCategories)].indexOf(value) + 1)
           }
         })
       } else {

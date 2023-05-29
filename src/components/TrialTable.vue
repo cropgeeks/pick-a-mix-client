@@ -1,5 +1,5 @@
 <template>
-  <div id="table">
+  <div>
     <b-form @submit.prevent="update(true)">
       <b-form-group class="my-3" :label="$t('formLabelTrialComponents')" :description="$t('formDescriptionTrialComponents')" label-for="trial-components">
         <b-form-checkbox-group v-model="selectedComponents" id="trial-components">

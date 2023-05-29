@@ -14,7 +14,7 @@ export default new Vuex.Store({
   state: {
     locale: 'en_GB',
     serverUrl: null,
-    colors: ['#eb3b5a', '#fa8231', '#f7b731', '#20bf6b', '#0fb9b1', '#45aaf2', '#4b7bec', '#a55eea']
+    colors: ['#19b4d2', '#f2ba1d', '#c71575', '#6d933c', '#094d70', '#4b317b', '#ff6d41', '#ef831e']
   },
   getters: {
     storeLocale: (state) => state.locale,

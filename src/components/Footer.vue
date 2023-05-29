@@ -1,10 +1,5 @@
 <template>
   <div>
-    <b-container class="py-3">
-      <b-card>
-        <div v-html="$t('pageHomeContact')" />
-      </b-card>
-    </b-container>
     <div class="bg-secondary pt-5">
       <b-container class="py-3">
         <b-row class="organizations">
