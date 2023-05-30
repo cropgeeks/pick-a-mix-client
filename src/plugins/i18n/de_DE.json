@@ -6,9 +6,13 @@
   "buttonSelectNone": "Keine auswählen",
   "buttonUpdate": "Aktualisieren",
   "buttonPlot": "Darstellen",
+  "buttonComponentAny": "Beliebig",
+  "buttonComponentAll": "Alle",
   "formLabelTrialComponents": "Versuchskomponenten",
   "formDescriptionTrialComponents": "Wähle die Komponenten die Teil des Versuches sein sollen.",
   "formLabelMeasures": "Bitte die Maßeinheiten zum darstellen auswählen",
+  "formLabelTrialComponentsComparator": "Vergleichsart",
+  "formDescriptionTrialComponentsComparator": "Bestimme ob die Mischung BELIEBIGE oder ALLE der ausgewählten Komponenten beinhalten soll.",
   "menuLocale": "Sprache",
   "modalTextLoading": "Lade...",
   "modalTextTrialDetails": "Unten stehen mehr Informationen über den Versuch selber und die Komponenten die Teil des Versuches sind bereit.",
@@ -45,5 +49,6 @@
   "trialDetailsTitleCpr": "Nutzpflanzenleistungsverhältnis",
   "trialDetailsSubtitleCpr": "",
   "widgetGradientLow": "Niedrig",
-  "widgetGradientHigh": "Hoch"
+  "widgetGradientHigh": "Hoch",
+  "widgetChartAxisTitleCount": "Anzahl"
 }

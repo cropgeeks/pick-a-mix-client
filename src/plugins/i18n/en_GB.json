@@ -8,8 +8,12 @@
   "buttonSelectNone": "Select none",
   "buttonUpdate": "Update",
   "buttonPlot": "Plot",
+  "buttonComponentAny": "Any",
+  "buttonComponentAll": "All",
   "formLabelTrialComponents": "Trial components",
   "formDescriptionTrialComponents": "Select the components that should be part of the trial.",
+  "formLabelTrialComponentsComparator": "Comparison type",
+  "formDescriptionTrialComponentsComparator": "Decide whether the mix should include ANY or ALL of the selected components.",
   "formLabelMeasures": "Please select the measures to plot",
   "menuLocale": "Language",
   "modalTextLoading": "Loading...",
@@ -53,5 +57,6 @@
   "tourHomeWelcomeTitle": "Welcome",
   "tourHomeWelcomeText": "Welcome to Pick-a-Mix where we show you crop yields and other data from intercrop trials on commercial and research farms across Scotland.",
   "widgetGradientLow": "Low",
-  "widgetGradientHigh": "High"
+  "widgetGradientHigh": "High",
+  "widgetChartAxisTitleCount": "Count"
 }

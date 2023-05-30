@@ -24,11 +24,18 @@
       </b-form-group>
 
       <b-button-group class="d-block">
-        <b-button variant="outline-secondary" @click="selectedComponents = allComponents"><BIconCheck2Square /> {{ $t('buttonSelectAll') }}</b-button>
-        <b-button variant="outline-secondary" @click="selectedComponents = []"><BIconCheck /> {{ $t('buttonSelectNone') }}</b-button>
+        <b-button variant="outline-info" @click="selectedComponents = allComponents"><BIconCheck2Square /> {{ $t('buttonSelectAll') }}</b-button>
+        <b-button variant="outline-info" @click="selectedComponents = []"><BIconSquare /> {{ $t('buttonSelectNone') }}</b-button>
       </b-button-group>
 
-      <b-button class="mt-3" type="submit"><BIconArrowRepeat /> {{ $t('buttonUpdate') }}</b-button>
+      <b-form-group class="my-3" :label="$t('formLabelTrialComponentsComparator')" :description="$t('formDescriptionTrialComponentsComparator')" label-for="trial-components-comparator">
+        <b-button-group class="d-block">
+          <b-button :variant="componentComparator === 'ANY' ? 'primary' : null" @click="componentComparator = 'ANY'"><BIconDashSquareDotted /> {{ $t('buttonComponentAny') }}</b-button>
+          <b-button :variant="componentComparator === 'ALL' ? 'primary' : null" @click="componentComparator = 'ALL'"><BIconCheck2Square /> {{ $t('buttonComponentAll') }}</b-button>
+        </b-button-group>
+      </b-form-group>
+
+      <b-button type="submit"><BIconArrowRepeat /> {{ $t('buttonUpdate') }}</b-button>
     </b-form>
 
     <b-table class="my-3"
@@ -163,7 +170,7 @@ import WheatIcon from '@/components/icons/WheatIcon'
 
 import { getComponents } from '@/plugins/api'
 
-import { BIconPatchQuestion, BIconArrowRepeat, BIconCheck2Square, BIconCheck, BIconInfoCircle } from 'bootstrap-vue'
+import { BIconPatchQuestion, BIconArrowRepeat, BIconCheck2Square, BIconSquare, BIconInfoCircle, BIconDashSquareDotted } from 'bootstrap-vue'
 
 const emitter = require('tiny-emitter/instance')
 
@@ -172,8 +179,9 @@ export default {
     BIconArrowRepeat,
     BIconPatchQuestion,
     BIconCheck2Square,
-    BIconCheck,
+    BIconSquare,
     BIconInfoCircle,
+    BIconDashSquareDotted,
     BiodiversityIcon,
     CPRIcon,
     DiseaseIncidenceIcon,
@@ -218,7 +226,8 @@ export default {
       sortBy: null,
       sortDesc: false,
       selectedComponents: [],
-      allComponents: []
+      allComponents: [],
+      componentComparator: 'ANY'
     }
   },
   watch: {
@@ -307,14 +316,27 @@ export default {
       }
     },
     update: function (resetPrevCount = false) {
-      const filter = this.selectedComponents.length === this.allComponents.length
-        ? null
-        : [{
+      let filter = null
+
+      if (this.componentComparator === 'ALL') {
+        filter = this.selectedComponents.map(c => {
+          return {
+            column: 'trialComponents',
+            operator: 'and',
+            comparator: 'jsonSearch',
+            values: [c]
+          }
+        })
+      } else {
+        if (this.selectedComponents.length !== this.allComponents.length) {
+          filter = [{
             column: 'trialComponents',
             operator: 'and',
             comparator: 'jsonSearch',
             values: this.selectedComponents
           }]
+        }
+      }
 
       if (resetPrevCount) {
         this.page = 1
