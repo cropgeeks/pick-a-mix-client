@@ -30,8 +30,8 @@
 
       <b-form-group class="my-3" :label="$t('formLabelTrialComponentsComparator')" :description="$t('formDescriptionTrialComponentsComparator')" label-for="trial-components-comparator">
         <b-button-group class="d-block">
-          <b-button :variant="componentComparator === 'ANY' ? 'primary' : null" @click="componentComparator = 'ANY'"><BIconDashSquareDotted /> {{ $t('buttonComponentAny') }}</b-button>
-          <b-button :variant="componentComparator === 'ALL' ? 'primary' : null" @click="componentComparator = 'ALL'"><BIconCheck2Square /> {{ $t('buttonComponentAll') }}</b-button>
+          <b-button :variant="componentComparator === 'ANY' ? 'primary' : null" @click="componentComparator = 'ANY'"><BIconUiChecksGrid /> {{ $t('buttonComponentAny') }}</b-button>
+          <b-button :variant="componentComparator === 'ALL' ? 'primary' : null" @click="componentComparator = 'ALL'"><BIconGridFill /> {{ $t('buttonComponentAll') }}</b-button>
         </b-button-group>
       </b-form-group>
 
@@ -170,7 +170,7 @@ import WheatIcon from '@/components/icons/WheatIcon'
 
 import { getComponents } from '@/plugins/api'
 
-import { BIconPatchQuestion, BIconArrowRepeat, BIconCheck2Square, BIconSquare, BIconInfoCircle, BIconDashSquareDotted } from 'bootstrap-vue'
+import { BIconPatchQuestion, BIconArrowRepeat, BIconCheck2Square, BIconSquare, BIconInfoCircle, BIconUiChecksGrid, BIconGridFill } from 'bootstrap-vue'
 
 const emitter = require('tiny-emitter/instance')
 
@@ -181,7 +181,8 @@ export default {
     BIconCheck2Square,
     BIconSquare,
     BIconInfoCircle,
-    BIconDashSquareDotted,
+    BIconUiChecksGrid,
+    BIconGridFill,
     BiodiversityIcon,
     CPRIcon,
     DiseaseIncidenceIcon,
