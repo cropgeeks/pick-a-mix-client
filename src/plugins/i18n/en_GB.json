@@ -56,6 +56,12 @@
   "trialDetailsSubtitleCpr": "",
   "tourHomeWelcomeTitle": "Welcome",
   "tourHomeWelcomeText": "Welcome to Pick-a-Mix where we show you crop yields and other data from intercrop trials on commercial and research farms across Scotland.",
+  "tourHomeDataTableTitle": "Trial data table",
+  "tourHomeDataTableText": "This table shows all trials that are part of this dataset. The columns show trial characteristics and can be sorted. Click on a table row to see more details about the trial. Use the section above the table to filter for components.",
+  "tourHomeDataMapTitle": "Trial map",
+  "tourHomeDataMapText": "This map shows the trials in a geographic context by placing them on a map. You can zoom and pan around the map. Use the buttons above the map to switch between trial characteristics. These will then be shown on the map in the form of coloured circles.",
+  "tourHomeDataPlotTitle": "Trial charts",
+  "tourHomeDataPlotText": "Use the selection box below to select trial characteristics. Pressing the button below will plot the data for all trials across the selection.",
   "widgetGradientLow": "Low",
   "widgetGradientHigh": "High",
   "widgetChartAxisTitleCount": "Count"
