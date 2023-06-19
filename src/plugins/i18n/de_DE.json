@@ -33,7 +33,7 @@
   "tableColumnTrialLongitude": "Längengrad",
   "tableColumnTrialCreatedOn": "Erstellt am",
   "tableColumnTrialCpr": "CPR",
-  "tableColumnTrialCprTooltip": "Nutzpflanzenleistungsverhältnis",
+  "tableColumnTrialCprTooltip": "Nutzpflanzenleistungsverhältnis = Verhältnis von Mix-Ertrag:Mono-Ertrag",
   "trialDetailsTitleFarmManagement": "Farmmanagement",
   "trialDetailsSubtitleFarmManagement": "",
   "trialDetailsTitleWeedIncidence": "Unkrautvorkommen",

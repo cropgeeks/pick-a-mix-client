@@ -39,7 +39,7 @@
   "tableColumnTrialLongitude": "Longitude",
   "tableColumnTrialCreatedOn": "Created on",
   "tableColumnTrialCpr": "CPR",
-  "tableColumnTrialCprTooltip": "Crop performance ratio",
+  "tableColumnTrialCprTooltip": "Crop performance ratio = ratio of mix yield:mono yield",
   "trialDetailsTitleFarmManagement": "Farm management",
   "trialDetailsSubtitleFarmManagement": "",
   "trialDetailsTitleWeedIncidence": "Weed incidence",

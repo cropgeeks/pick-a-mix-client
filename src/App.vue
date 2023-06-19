@@ -149,11 +149,23 @@ $secondary: #bdc3c7;
 .icon-fababean {
   color: #10ac84;
 }
+.icon-grass {
+  color: #138510;
+}
+.icon-grass {
+  color: #138510;
+}
+.icon-grass-clover {
+  color: #499e56;
+}
 .icon-maize {
   color: red;
 }
 .icon-linseed {
   color: #BDC581;
+}
+.icon-lupine {
+  color: #6d23c2;
 }
 .icon-oats {
   color: #EAB543;

@@ -4,20 +4,23 @@
       <b-form-group class="my-3" :label="$t('formLabelTrialComponents')" :description="$t('formDescriptionTrialComponents')" label-for="trial-components">
         <b-form-checkbox-group v-model="selectedComponents" id="trial-components">
           <b-form-checkbox :value="comp" v-for="comp in allComponents" :key="`components-${comp}`">
-            <span class="table-icon" v-if="comp === 'Barley'"><BarleyIcon class="icon-barley" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Beans'"><BeanIcon class="icon-bean" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Clover'"><CloverIcon class="icon-clover" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Faba bean'"><FabaBeanIcon class="icon-fababean" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Maize'"><MaizeIcon class="icon-maize" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Linseed'"><LinseedIcon class="icon-linseed" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Oats'"><OatIcon class="icon-oats" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Peas'"><PeaIcon class="icon-peas" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Potato'"><PotatoIcon class="icon-potato" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Oilseed rape'"><RapeseedIcon class="icon-rapeseed" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Rye'"><RyeIcon class="icon-rye" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Turnip'"><TurnipIcon class="icon-turnip" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Vetch'"><VetchIcon class="icon-vetch" /> {{ comp }}</span>
-            <span class="table-icon" v-else-if="comp === 'Wheat'"><WheatIcon class="icon-wheat" /> {{ comp }}</span>
+            <span class="table-icon" v-if="comp.toLowerCase() === 'barley'"><BarleyIcon class="icon-barley" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'beans'"><BeanIcon class="icon-bean" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'clover'"><CloverIcon class="icon-clover" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'faba bean'"><FabaBeanIcon class="icon-fababean" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'grass'"><GrassIcon class="icon-grass" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'grass/clover mix'"><GrassCloverIcon class="icon-grass-clover" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'maize'"><MaizeIcon class="icon-maize" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'linseed'"><LinseedIcon class="icon-linseed" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'lupins'"><LupineIcon class="icon-lupine" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'oats'"><OatIcon class="icon-oats" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'peas'"><PeaIcon class="icon-peas" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'potato'"><PotatoIcon class="icon-potato" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'oilseed rape'"><RapeseedIcon class="icon-rapeseed" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'rye'"><RyeIcon class="icon-rye" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'turnip'"><TurnipIcon class="icon-turnip" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'vetch'"><VetchIcon class="icon-vetch" /> {{ comp }}</span>
+            <span class="table-icon" v-else-if="comp.toLowerCase() === 'wheat'"><WheatIcon class="icon-wheat" /> {{ comp }}</span>
             <span class="table-icon" v-else><BIconPatchQuestion /> {{ comp }}</span>
           </b-form-checkbox>
         </b-form-checkbox-group>
@@ -51,20 +54,23 @@
              :sort-desc.sync="sortDesc">
       <template #cell(trialComponents)="data">
         <span v-for="comp in data.item.trialComponents" :key="`row-${data.index}-crop-${comp.id}`" class="table-icon mr-2">
-          <b-badge variant="light" class="w-100 mb-1" v-if="comp.crop === 'Barley'"><BarleyIcon class="icon-barley" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Beans'"><BeanIcon class="icon-bean" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Clover'"><CloverIcon class="icon-clover" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Faba bean'"><FabaBeanIcon class="icon-fababean" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Maize'"><MaizeIcon class="icon-maize" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Linseed'"><LinseedIcon class="icon-linseed" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Oats'"><OatIcon class="icon-oats" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Peas'"><PeaIcon class="icon-peas" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Potato'"><PotatoIcon class="icon-potato" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Oilseed rape'"><RapeseedIcon class="icon-rapeseed" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Rye'"><RyeIcon class="icon-rye" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Turnip'"><TurnipIcon class="icon-turnip" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Vetch'"><VetchIcon class="icon-vetch" /> {{ comp.crop }}</b-badge>
-          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop === 'Wheat'"><WheatIcon class="icon-wheat" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-if="comp.crop.toLowerCase() === 'barley'"><BarleyIcon class="icon-barley" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'beans'"><BeanIcon class="icon-bean" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'clover'"><CloverIcon class="icon-clover" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'faba bean'"><FabaBeanIcon class="icon-fababean" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'maize'"><MaizeIcon class="icon-maize" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'grass'"><MaizeIcon class="icon-grass" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'grass/clover mix'"><MaizeIcon class="icon-grass-clover" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'linseed'"><LinseedIcon class="icon-linseed" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'lupins'"><LupineIcon class="icon-lupine" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'oats'"><OatIcon class="icon-oats" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'peas'"><PeaIcon class="icon-peas" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'potato'"><PotatoIcon class="icon-potato" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'oilseed rape'"><RapeseedIcon class="icon-rapeseed" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'rye'"><RyeIcon class="icon-rye" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'turnip'"><TurnipIcon class="icon-turnip" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'vetch'"><VetchIcon class="icon-vetch" /> {{ comp.crop }}</b-badge>
+          <b-badge variant="light" class="w-100 mb-1" v-else-if="comp.crop.toLowerCase() === 'wheat'"><WheatIcon class="icon-wheat" /> {{ comp.crop }}</b-badge>
           <b-badge variant="light" class="w-100 mb-1" v-else><BIconPatchQuestion /> {{ comp.crop }}</b-badge>
         </span>
       </template>
@@ -157,7 +163,10 @@ import BarleyIcon from '@/components/icons/BarleyIcon'
 import BeanIcon from '@/components/icons/BeanIcon'
 import CloverIcon from '@/components/icons/CloverIcon'
 import FabaBeanIcon from '@/components/icons/FabaBeanIcon'
+import GrassIcon from '@/components/icons/GrassIcon'
+import GrassCloverIcon from '@/components/icons/GrassCloverIcon'
 import LinseedIcon from '@/components/icons/LinseedIcon'
+import LupineIcon from '@/components/icons/LupineIcon'
 import MaizeIcon from '@/components/icons/MaizeIcon'
 import OatIcon from '@/components/icons/OatIcon'
 import PeaIcon from '@/components/icons/PeaIcon'
@@ -194,7 +203,10 @@ export default {
     BeanIcon,
     CloverIcon,
     FabaBeanIcon,
+    GrassIcon,
+    GrassCloverIcon,
     LinseedIcon,
+    LupineIcon,
     MaizeIcon,
     OatIcon,
     PeaIcon,
