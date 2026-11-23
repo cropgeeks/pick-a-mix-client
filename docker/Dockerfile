@@ -23,7 +23,7 @@ RUN rm -f .env && \
     cp -a /opt/pick-a-mix-client/dist/. /opt/pick-a-mix-server/client/
 
 # Download Gradle and build the server code
-RUN apk add --no-cache openjdk11 && \
+RUN apk add --no-cache openjdk21 && \
     wget https://services.gradle.org/distributions/gradle-8.8-bin.zip -P /tmp/ && \
     unzip /tmp/gradle-8.8-bin.zip -d /opt/ && \
     echo "data.directory.external=/data/pick-a-mix" > /opt/pick-a-mix-server/config.properties && \
